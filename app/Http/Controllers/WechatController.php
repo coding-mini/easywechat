@@ -12,9 +12,26 @@ class WechatController extends Controller
         Log::info('I am wechat server');
 
         $app = app('wechat.official_account');
-
+        $responseMsg = '';
         $app->server->push(function($message){
-            return "欢迎关注 coding10！";
+            switch ($message->MsgType) {
+                case 'subscribe': // 关注事件
+                    $responseMsg = '欢迎您关注 Coding10';
+                    break;
+                case 'text':   // 文本消息
+                    $responseMsg = '我是个不会聊天的人';
+                    break;
+                case 'video':
+                    $responseMsg = '我非常喜欢做视频';
+                    break;
+                case 'voice':
+                    $responseMsg = '我非常喜欢做音频';
+                    break;
+                default:
+                    $responseMsg = '我是没有个性的默认恢复消息';
+                    break;
+            }
+            return $responseMsg;
         });
 
         return $app->server->serve();
