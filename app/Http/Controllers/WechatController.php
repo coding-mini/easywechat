@@ -14,8 +14,8 @@ class WechatController extends Controller
         $app = app('wechat.official_account');
 
         $app->server->push(function($message) use($app){
-            $userManager  = $app->user;
-            $user = $userManager->get($message->FromUserName);
+//            $userManager  = $app->user;
+//            $user = $userManager->get($message->FromUserName);
             return $message->FromUserName;
 
             $responseMsg = '';
