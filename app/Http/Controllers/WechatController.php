@@ -17,7 +17,7 @@ class WechatController extends Controller
 
         $app->server->push(function($message) use($responseMsg){
 
-            switch ($message->MsgType) {
+            switch ($message['MsgType']) {
                 case 'subscribe': // 关注事件
                     $responseMsg = '欢迎您关注 Coding10';
                     break;
