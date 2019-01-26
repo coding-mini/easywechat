@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
@@ -15,8 +16,9 @@ class WechatController extends Controller
 
         $app->server->push(function($message) use($app){
             $userManager  = $app->user;
-//            $user = $userManager->get($message->FromUserName);
-            return $message->FromUserName;
+            $user = $userManager->get($message->FromUserName);
+            Cache::put('user',$user,2);
+
 
             $responseMsg = '';
             switch ($message->MsgType) {
