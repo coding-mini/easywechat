@@ -16,7 +16,7 @@ class WechatController extends Controller
         $app->server->push(function($message) use($app){
             $userManager  = $app->user;
             $user = $userManager->get($message->FromUserName);
-            return $user->nickname;
+            return $message->FromUserName;
 
             $responseMsg = '';
             switch ($message->MsgType) {
