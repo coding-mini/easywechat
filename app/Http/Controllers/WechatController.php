@@ -13,9 +13,11 @@ class WechatController extends Controller
 
         $app = app('wechat.official_account');
 
+        $app->server->push(function($message) use($app){
+            $userManager  = $app->user;
+            $user = $userManager->get($message->FromUserName);
+            return $user->nickname;
 
-
-        $app->server->push(function($message) {
             $responseMsg = '';
             switch ($message->MsgType) {
                 case 'subscribe': // 关注事件
