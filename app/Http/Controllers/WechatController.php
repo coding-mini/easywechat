@@ -8,6 +8,21 @@ use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
 {
+    private $app;
+    private $user_manager;
+
+    public function __construct()
+    {
+        $this->app = app('wechat.official_account');
+        $this->user_manager = $this->app->user;
+
+    }
+
+    public function test()
+    {
+        dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo'));
+    }
+
     public function serve()
     {
         Log::info('I am wechat server');

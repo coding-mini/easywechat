@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::any('/wechat', 'WechatController@serve');
+Route::any('/test', 'WechatController@test');
