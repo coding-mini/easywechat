@@ -12,8 +12,11 @@ class WechatController extends Controller
         Log::info('I am wechat server');
 
         $app = app('wechat.official_account');
+
         $responseMsg = '';
-        $app->server->push(function($message){
+
+        $app->server->push(function($message) use($responseMsg){
+
             switch ($message->MsgType) {
                 case 'subscribe': // 关注事件
                     $responseMsg = '欢迎您关注 Coding10';
