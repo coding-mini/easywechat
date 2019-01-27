@@ -40,6 +40,12 @@ class WechatController extends Controller
         dd(Cache::get('user'));
     }
 
+    public function authUser()
+    {
+        $user_auth = $this->wechat->oauth->user();
+        dd($user_auth);
+    }
+
     public function createMenu()
     {
         $buttons = [
@@ -54,7 +60,7 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "官网",
-                        "url"  => "http://www.coding10.com"
+                        "url"  => "http://www.laravel-tube.com/oauth"
                     ],
                     [
                         "type" => "view",
