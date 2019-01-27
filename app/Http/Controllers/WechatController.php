@@ -24,6 +24,12 @@ class WechatController extends Controller
         dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')->nickname);
     }
 
+    public function testUser()
+    {
+        //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
+        dd(Cache::get('user'));
+    }
+
     public function serve()
     {
         Log::info('I am wechat server');
@@ -32,6 +38,7 @@ class WechatController extends Controller
 
         $app->server->push(function($message) use($app){
             $user = $app->user->get($message->FromUserName);
+            Cache::put('user',$user,10);
             $responseMsg = '';
 
             switch ($message->MsgType) {
