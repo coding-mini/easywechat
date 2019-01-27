@@ -20,8 +20,9 @@ class WechatController extends Controller
 
     public function test()
     {
-        //$this->user_manager->select();
-        dd($this->user_manager->list()->data->openid);
+        $user_openids = $this->user_manager->list()->data->openid;
+        //$this->user_manager->select($user_openids);
+        dd($this->user_manager->select($user_openids));
         //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
         //dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')->nickname);
     }
