@@ -20,7 +20,8 @@ class WechatController extends Controller
 
     public function test()
     {
-        dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo'));
+        //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
+        dd($this->user_manager);
     }
 
     public function serve()
