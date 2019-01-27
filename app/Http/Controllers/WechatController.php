@@ -31,28 +31,25 @@ class WechatController extends Controller
         $app = app('wechat.official_account');
 
         $app->server->push(function($message) use($app){
-//            $userManager  = $app->user;
-
-//            $user = $userManager->get($message->FromUserName);
-            Cache::put('message',$message,10);
-
-
+            $user = $app->user->get($message->FromUserName);
             $responseMsg = '';
+
             switch ($message->MsgType) {
                 case 'subscribe': // 关注事件
-                    $responseMsg = '欢迎您关注 Coding10';
+                    $responseMsg = $user.nickname.'欢迎您关注 Coding10';
                     break;
                 case 'text':   // 文本消息
-                    $responseMsg = '我是个不会聊天的人';
+                    $responseMsg = $user.nickname.'我是个不会聊天的人';
+
                     break;
                 case 'video':
-                    $responseMsg = '我非常喜欢做视频';
+                    $responseMsg = $user.nickname.'我非常喜欢做视频';
                     break;
                 case 'voice':
-                    $responseMsg = '我非常喜欢做音频';
+                    $responseMsg = $user.nickname.'我非常喜欢做音频';
                     break;
                 default:
-                    $responseMsg = '我是没有个性的默认恢复消息';
+                    $responseMsg = $user.nickname.'我是没有个性的默认恢复消息';
                     break;
             }
             return $responseMsg;
