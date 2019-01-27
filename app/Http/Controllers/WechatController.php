@@ -27,6 +27,8 @@ class WechatController extends Controller
     public function testUser()
     {
         //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
+        $user = Cache::get('user');
+        
         dd(Cache::get('user'));
     }
 
