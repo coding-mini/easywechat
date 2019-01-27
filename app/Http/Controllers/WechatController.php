@@ -92,7 +92,8 @@ class WechatController extends Controller
                         case 'CLICK':
                             switch ($message->EventKey) {
                                 case 'BUTTON_ABOUT_US':
-                                    return '你点击了关于我们';
+                                    $user_auth = $wechat->oauth->user();
+                                    return $user_auth->nickname.'你点击了关于我们';
                                 case 'V1001_GOOD':
                                     return '你点击了赞一下我们';
                             }
