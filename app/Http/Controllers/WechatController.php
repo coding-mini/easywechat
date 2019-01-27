@@ -31,10 +31,10 @@ class WechatController extends Controller
         $app = app('wechat.official_account');
 
         $app->server->push(function($message) use($app){
-            $userManager  = $app->user;
+//            $userManager  = $app->user;
 
 //            $user = $userManager->get($message->FromUserName);
-            Cache::put('user',$userManager,2);
+//            Cache::put('user',$userManager,2);
 
 
             $responseMsg = '';
