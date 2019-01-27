@@ -42,8 +42,8 @@ class WechatController extends Controller
 
     public function authUser()
     {
-        $user_auth = $this->wechat->oauth->user();
-        dd($user_auth);
+        //$user_auth = $this->wechat->oauth->user();
+        dd($_SESSION['wechat_user']);
     }
 
     public function createMenu()
