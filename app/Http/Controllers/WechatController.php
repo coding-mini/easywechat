@@ -20,9 +20,15 @@ class WechatController extends Controller
 
     public function test()
     {
-        dd($this->user_manager->list());
+        //$this->user_manager->select();
+        dd($this->user_manager->list()->data->openid);
         //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
         //dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')->nickname);
+    }
+
+    public function userList()
+    {
+        dd();
     }
 
     public function testUser()
@@ -45,7 +51,15 @@ class WechatController extends Controller
             $responseMsg = '';
 
             switch ($message->MsgType) {
-                case 'subscribe': // 关注事件
+                case 'event':
+                    switch ($message->Event) {
+                        case 'subscribe':
+                            break;
+                        case '':
+                            break;
+                        case '':
+                            break;
+                    }
                     $responseMsg = $user->nickname.'欢迎您关注 Coding10';
                     break;
                 case 'text':   // 文本消息
