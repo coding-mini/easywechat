@@ -34,7 +34,7 @@ class WechatController extends Controller
 //            $userManager  = $app->user;
 
 //            $user = $userManager->get($message->FromUserName);
-//            Cache::put('user',$userManager,2);
+            Cache::put('message',$message,10);
 
 
             $responseMsg = '';
