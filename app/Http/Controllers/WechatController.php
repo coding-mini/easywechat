@@ -49,7 +49,8 @@ class WechatController extends Controller
                     break;
                 case 'text':   // 文本消息
                     $responseMsg = $user->nickname.'我是个不会聊天的人';
-
+                case 'image':
+                    $responseMsg = $user->nickname.'收到图片消息';
                     break;
                 case 'video':
                     $responseMsg = $user->nickname.'我非常喜欢做视频';
