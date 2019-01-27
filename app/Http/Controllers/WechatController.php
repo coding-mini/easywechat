@@ -20,8 +20,9 @@ class WechatController extends Controller
 
     public function test()
     {
+        dd($this->user_manager->list());
         //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
-        dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')->nickname);
+        //dd($this->user_manager->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')->nickname);
     }
 
     public function testUser()
@@ -46,27 +47,21 @@ class WechatController extends Controller
             switch ($message->MsgType) {
                 case 'subscribe': // 关注事件
                     $responseMsg = $user->nickname.'欢迎您关注 Coding10';
-                    return $responseMsg;
                     break;
                 case 'text':   // 文本消息
                     $responseMsg = $user->nickname.'我是个不会聊天的人';
-                    return $responseMsg;
                     break;
                 case 'image':
                     $responseMsg = $user->nickname.'收到图片消息';
-                    return $responseMsg;
                     break;
                 case 'video':
                     $responseMsg = $user->nickname.'我非常喜欢做视频';
-                    return $responseMsg;
                     break;
                 case 'voice':
                     $responseMsg = $user->nickname.'我非常喜欢做音频';
-                    return $responseMsg;
                     break;
                 default:
                     $responseMsg = $user->nickname.'我是没有个性的默认恢复消息';
-                    return $responseMsg;
                     break;
             }
             return $responseMsg;
