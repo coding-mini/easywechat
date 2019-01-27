@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/test', 'WechatController@test');
-Route::any('/test/user', 'WechatController@testUser');
+Route::get('/test/user', 'WechatController@testUser');
+Route::get('/menu/create', 'WechatController@createMenu');

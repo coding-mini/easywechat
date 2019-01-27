@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
 {
-    private $app;
+    private $wechat;
     private $user_manager;
 
     public function __construct()
     {
-        $this->app = app('wechat.official_account');
-        $this->user_manager = $this->app->user;
+        $this->wechat = app('wechat.official_account');
+        $this->user_manager = $this->wechat->user;
 
     }
 
@@ -40,14 +40,46 @@ class WechatController extends Controller
         dd(Cache::get('user'));
     }
 
+    public function createMenu()
+    {
+        $buttons = [
+            [
+                "type" => "click",
+                "name" => "关于我们",
+                "key"  => "BUTTON_ABOUT_US"
+            ],
+            [
+                "name"       => "菜单",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "官网",
+                        "url"  => "http://www.coding10.com"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "视频",
+                        "url"  => "http://v.qq.com/"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "赞一下我们",
+                        "key" => "V1001_GOOD"
+                    ],
+                ],
+            ],
+        ];
+        $this->wechat->menu->create($buttons);
+    }
+
     public function serve()
     {
         Log::info('I am wechat server');
 
-        $app = app('wechat.official_account');
+        $wechat = app('wechat.official_account');
 
-        $app->server->push(function($message) use($app){
-            $user = $app->user->get($message->FromUserName);
+        $wechat->server->push(function($message) use($wechat){
+            $user = $wechat->user->get($message->FromUserName);
             Cache::put('user',$user,10);
             $responseMsg = '';
 
@@ -56,7 +88,13 @@ class WechatController extends Controller
                     switch ($message->Event) {
                         case 'subscribe':
                             break;
-                        case '':
+                        case 'CLICK':
+                            switch ($message->EventKey) {
+                                case '':
+                                    break;
+                                case '':
+                                    break;
+                            }
                             break;
                         case '':
                             break;
@@ -82,6 +120,6 @@ class WechatController extends Controller
             return $responseMsg;
         });
 
-        return $app->server->serve();
+        return $wechat->server->serve();
     }
 }
