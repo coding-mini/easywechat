@@ -87,16 +87,17 @@ class WechatController extends Controller
                 case 'event':
                     switch ($message->Event) {
                         case 'subscribe':
-                            break;
+                            return '欢迎您关注 Coding10 公众号';
+
                         case 'CLICK':
                             switch ($message->EventKey) {
-                                case '':
-                                    break;
-                                case '':
-                                    break;
+                                case 'BUTTON_ABOUT_US':
+                                    return '你点击了关于我们';
+                                case 'V1001_GOOD':
+                                    return '你点击了赞一下我们';
                             }
-                            break;
-                        case '':
+                            return '';
+                        default:
                             break;
                     }
                     $responseMsg = $user->nickname.'欢迎您关注 Coding10';
