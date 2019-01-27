@@ -28,7 +28,7 @@ class WechatController extends Controller
     {
         //->get('oKHQjuN4kbYFTnpA_SQto4BejrYo')
         $user = Cache::get('user');
-        
+
         dd(Cache::get('user'));
     }
 
@@ -45,20 +45,20 @@ class WechatController extends Controller
 
             switch ($message->MsgType) {
                 case 'subscribe': // 关注事件
-                    $responseMsg = $user.nickname.'欢迎您关注 Coding10';
+                    $responseMsg = $user->nickname.'欢迎您关注 Coding10';
                     break;
                 case 'text':   // 文本消息
-                    $responseMsg = $user.nickname.'我是个不会聊天的人';
+                    $responseMsg = $user->nickname.'我是个不会聊天的人';
 
                     break;
                 case 'video':
-                    $responseMsg = $user.nickname.'我非常喜欢做视频';
+                    $responseMsg = $user->nickname.'我非常喜欢做视频';
                     break;
                 case 'voice':
-                    $responseMsg = $user.nickname.'我非常喜欢做音频';
+                    $responseMsg = $user->nickname.'我非常喜欢做音频';
                     break;
                 default:
-                    $responseMsg = $user.nickname.'我是没有个性的默认恢复消息';
+                    $responseMsg = $user->nickname.'我是没有个性的默认恢复消息';
                     break;
             }
             return $responseMsg;
