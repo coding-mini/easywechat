@@ -22,5 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/test', 'WechatController@test');
 Route::get('/test/user', 'WechatController@testUser');
-Route::get('/oauth', 'WechatController@authUser')->middleware('wechat.oauth');
+Route::get('/oauth', 'WechatController@authUser')->middleware(['web','wechat.oauth']);
 Route::get('/menu/create', 'WechatController@createMenu');
