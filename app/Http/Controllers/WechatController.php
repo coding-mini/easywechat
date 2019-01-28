@@ -42,7 +42,7 @@ class WechatController extends Controller
 
     public function authUser()
     {
-        $user_auth = $this->wechat->oauth->user();
+        $user_auth = session('wechat.oauth_user');
         dd($user_auth);
     }
 
@@ -107,8 +107,7 @@ class WechatController extends Controller
                         default:
                             break;
                     }
-                    $responseMsg = $user->nickname.'欢迎您关注 Coding10';
-                    break;
+                    return '';
                 case 'text':   // 文本消息
                     $responseMsg = $user->nickname.'我是个不会聊天的人';
                     break;
